@@ -1,0 +1,38 @@
+public class Translate : MonoBehaviour {
+public float movespeed = 10f;
+public float turnspeed = 50f;
+    public Rigidbody rb;
+
+    void Start()
+    {
+        rb = this.GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+            transform.Translate(Vector3.forward * movespeed * Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.DownArrow))
+            transform.Translate(-Vector3.forward * movespeed * Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+            transform.Rotate(Vector3.up, -turnspeed * Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.RightArrow))
+            transform.Rotate(Vector3.up, turnspeed * Time.deltaTime);
+    }
+
+    void FixedUpdate()
+    {
+
+        if (Input.GetButton("Horizontal"))
+        {
+            transform.localPosition += Input.GetAxis("Horizontal") * transform.right * Time.deltaTime * movespeed;
+        }
+        {
+            if (Input.GetButton("Vertical"))
+                transform.localPosition += Input.GetAxis("Vertical") * transform.forward * Time.deltaTime * movespeed;
+        }
+    }
+}
