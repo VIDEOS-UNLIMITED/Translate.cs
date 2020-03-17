@@ -1,0 +1,40 @@
+public class AddForce : MonoBehaviour {
+
+    public Rigidbody rb;
+
+    public float forwardForce = 2000f;
+
+    public float backwardForce = -50f;
+
+    public float sidewaysForce = 500f;
+
+    void Start()
+    {
+        rb = this.GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+      
+    }
+    void FixedUpdate()
+    {
+        rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+
+        if (Input.GetKey("s"))
+        {
+            rb.AddForce(0, 0, backwardForce * Time.deltaTime);
+        }
+
+        if (Input.GetKey("d"))
+        {
+            rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0);
+        }
+
+        if (Input.GetKey("a"))
+        {
+            rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0);
+        }
+    }
+
+}
